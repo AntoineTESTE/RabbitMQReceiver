@@ -8,14 +8,12 @@ const twilio = require('twilio');
 
 module.exports = (rMqService) => {
   return {
-    receiving: (req) => {
+    receiving: () => {
       const msg = 'plop';
-      const queue = 'receiver';
       const routingKey = 'amqp://ldcfpqsj:_zoKJjBqqOqVBOwJWx32rxv-FjNNjPeP@penguin.rmq.cloudamqp.com/ldcfpqsj';
       const exchangeName = 'receiver';
-      const type = 'fanout';
       const ch = '';
-      rMqService.sendMessage(routingKey, queue, msg, exchangeName, type, ch);
+      rMqService.sendMessage(routingKey, msg, exchangeName, ch);
     }
 
   }
