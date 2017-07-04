@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (rabbitMqServices, handlers) => {
-  require('./rabbitmq.routes')(rabbitMqServices)
-  };
+module.exports = (handlers, services, server) => {
+  require('./receiver.routes')(handlers, services, server)
 };
+

@@ -3,7 +3,7 @@
 
 // Export des Routes
 
-module.exports = (server, services, handlers) => {
+module.exports = (handlers, services, server) => {
   //Add the route to receive the message
   server.route({
     method: 'POST',
@@ -12,7 +12,7 @@ module.exports = (server, services, handlers) => {
       description: '/receiver/message',
       notes: ['api'],
       tags: ['api'],
-      handler: handlers.receiver,
+      handler: handlers.receiver.receiving,
     }
   });
 };
