@@ -11,6 +11,7 @@
   "dependencies": {
     "amqp": "^0.2.6",
     "amqplib": "^0.5.1",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "hapi": "^16.4.3",
     "hapi-swagger": "^7.7.0",
