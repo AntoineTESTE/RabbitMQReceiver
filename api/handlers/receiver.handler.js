@@ -11,19 +11,27 @@ module.exports = (rMqService) => {
     receiving: (request, reply) => {
       // Nouvelle instance de message
       const twiml = new MessagingResponse();
-
-
       // twiml.message('The Robots are coming! Head for the hills!');
       // reply.writeHead(200, { 'Content-Type': 'text/xml' });
-      console.log('payload twilio:', request.payload.Body, request.payload.From);
+
       // reply(twiml.toString());
-
-
       // Reponse vide
       reply().code(200);
 
+      function msgmodel(content, sender, type, provider, providerMessageId) {
+        this.content = "blabla";
+        this.sender = "boby";
+        this.type = "sms";
+        this.provider = "twilio";
+        this.providerMessageId = "EE4DfgAd75175eZZzF";
+      };
+
+      const msg = new msgmodel()
+
+      console.log('payload twilio:', msg);
+
+
       // Envoi du message dans la queue
-      const msg = request.payload;
       rMqService.sendMessage(msg);
 
 
@@ -50,3 +58,4 @@ module.exports = (rMqService) => {
 
 
 
+2
