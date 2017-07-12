@@ -26,12 +26,10 @@ module.exports = (rMqService) => {
         receiveDate: moment().format(DATE_RFC2822)
       }
 
-      console.log('payload twilio:', msg);
+      console.log('Message sent :', msg);
 
       // Send message to queue
       rMqService.sendMessage(msg);
-
-
     }
   }
 }
