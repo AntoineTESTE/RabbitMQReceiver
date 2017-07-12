@@ -1,13 +1,11 @@
 'use strict';
 
 
-// Export des Routes
-
 module.exports = (handlers, services, server) => {
-  //Add the route to receive the message
+  // Route to receive message from Twilio
   server.route({
     method: 'POST',
-    path: '/message',                          //'/message', //labs.livee.com:3000/twilio/webhook <- url publique accessible par twilio
+    path: '/message',
     config: {
       description: '/message',
       notes: ['api'],
