@@ -26,9 +26,7 @@ server.register([
     }
   }
 ], (err) => {
-  require('./services')().then(services => {
-      return require('./api')(services, server);
-    })
+  require('./src')(server)
     .then(startServer)
     .then(() => console.log('Server running at:', server.info.uri))
     .catch(err => {
