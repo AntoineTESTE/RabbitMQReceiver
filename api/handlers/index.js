@@ -2,6 +2,6 @@
 
 module.exports = (services) => {
   return {
-    receiver: require('./receiver.handler')(services.rMqService),
-  }
+    receiver: require('./receiver.handler')(services)
+  };
 };

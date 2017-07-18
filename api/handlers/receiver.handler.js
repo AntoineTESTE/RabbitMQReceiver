@@ -2,34 +2,26 @@
 
 const twilio = require('twilio');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
-const bodyParser = require('body-parser');
 const moment = require('moment');
-const DATE_RFC2822 = "ddd, DD MMM YYYY HH:mm:ss ZZ";
+const DATE_RFC2822 = 'ddd, DD MMM YYYY HH:mm:ss ZZ';
 
-module.exports = (rMqService) => {
+module.exports = ({ RabbitMQService }) => {
   return {
-    receiving: (request, reply) => {
+    receiving(request, reply) {
+      const twiml = new MessagingResponse(); // New message instance
+      const { Body, From, SmsMessageSid } = request.payload;
 
-      // New message instance
-      const twiml = new MessagingResponse();
-      // Response on message reception
-      twiml.message('Your message have been received');
-      // Stringify response 
-      reply(twiml.toString()).code(200);
+      RabbitMQService.sendMessage({
+        content: Body,
+        sender: From,
+        type: 'sms',
+        provider: 'Twilio',
+        providerMessageId: SmsMessageSid,
+        receivedat: moment().format(DATE_RFC2822)
+      });
 
-      const msg = {
-        content: request.payload.Body,
-        sender: request.payload.From,
-        type: "SMS",
-        provider: "TWILIO",
-        providerMessageId: request.payload.SmsMessageSid,
-        receiveDate: moment().format(DATE_RFC2822)
-      }
-
-      console.log('Message sent :', msg);
-
-      // Send message to queue
-      rMqService.sendMessage(msg);
+      twiml.message('Your message have been received'); // Response on message reception
+      reply(twiml.toString()).code(200); // Stringify response
     }
-  }
-}
+  };
+};

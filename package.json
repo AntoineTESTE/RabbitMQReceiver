@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "force-readme": "if [ -s './README.md' ]; then echo ''; else echo 'Error: no README.md found or is empty' && exit 1; fi",
-    "check": "./node_modules/.bin/check-build && ./node_modules/.bin/eslint -c .eslintrc src/**/*.js && npm run force-readme && ./node_modules/.bin/textlint -c .textlintrc README.md"
+    "check": "npx check-build && npx eslint -c .eslintrc src/**/*.js --fix && npm run force-readme && npx textlint -c .textlintrc README.md"
   },
   "author": "PRESTATIONLIVEE\\prestation <teste.antoine@free.fr>",
   "license": "ISC",
   "dependencies": {
     "amqplib": "^0.5.1",
     "body-parser": "^1.17.2",
+    "boom": "^5.1.0",
+    "common-env": "^6.1.0",
     "david": "^11.0.0",
     "hapi": "^16.4.3",
     "hapi-swagger": "^7.7.0",
@@ -19,20 +21,15 @@
     "moment": "^2.18.1",
     "nodemon": "^1.11.0",
     "twilio": "^3.4.0",
-    "vision": "^4.1.1"
+    "vision": "^4.1.1",
+    "winston": "^2.3.1"
   },
   "repository": "https://github.com/livee/RabbitMQReceiver.git",
   "devDependencies": {
-    "check-build": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.2",
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.1.0",
-    "textlint": "^8.2.1",
-    "textlint-rule-no-dead-link": "^3.1.1",
-    "textlint-rule-no-empty-section": "^1.1.0",
-    "textlint-rule-structure": "^1.0.1"
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0"
   }
 }
