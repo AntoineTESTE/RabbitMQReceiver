@@ -10,7 +10,7 @@ const packageJSON = require('./package.json');
 const { promisify } = require('util');
 
 server.connection({
-  host: '0.0.0.0',
+  host: 'localhost',
   port: config.api.port
 });
 
@@ -27,12 +27,10 @@ server.register([
   }
 ], (err) => {
   require('./src')(server)
-    .then(promisify(server.start.bind(server)))
+    .then(() => promisify(server.start.bind(server))())
     .then(() => console.log('Server running at:', server.info.uri))
     .catch(err => {
       console.error(err);
       process.exit(1);
     });
 });
-
-
