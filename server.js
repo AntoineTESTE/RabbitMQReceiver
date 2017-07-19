@@ -10,7 +10,7 @@ const packageJSON = require('./package.json');
 const { promisify } = require('util');
 
 server.connection({
-  host: 'localhost', // 0.0.0.0
+  host: '0.0.0.0',
   port: config.api.port
 });
 
