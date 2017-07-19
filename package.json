@@ -2,8 +2,9 @@
   "name": "rabbitmq",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "force-readme": "if [ -s './README.md' ]; then echo ''; else echo 'Error: no README.md found or is empty' && exit 1; fi",
     "check": "npx check-build && npx eslint -c .eslintrc src/**/*.js --fix && npm run force-readme && npx textlint -c .textlintrc README.md"
   },

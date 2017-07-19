@@ -7,10 +7,10 @@ const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
 const server = new Hapi.Server();
 const packageJSON = require('./package.json');
-const startServer = () => require('util').promisify(server.start.bind(server));
+const { promisify } = require('util');
 
 server.connection({
-  host: '0.0.0.0',
+  host: 'localhost', // 0.0.0.0
   port: config.api.port
 });
 
@@ -27,10 +27,12 @@ server.register([
   }
 ], (err) => {
   require('./src')(server)
-    .then(startServer)
+    .then(promisify(server.start.bind(server)))
     .then(() => console.log('Server running at:', server.info.uri))
     .catch(err => {
       console.error(err);
       process.exit(1);
     });
 });
+
+

@@ -12,7 +12,8 @@ module.exports = () => {
       return {
         sendMessage(msg) {
           channel.publish(exchangeName, routingKey, new Buffer(JSON.stringify(msg)));
+          console.log(msg);
         }
-      }
+      };
     });
-}
+};
