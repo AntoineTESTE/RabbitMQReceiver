@@ -9,14 +9,14 @@ module.exports = ({ RabbitMQService }) => {
   return {
     receiving(request, reply) {
       const twiml = new MessagingResponse(); // New message instance
-      const { Body, From, SmsMessageSid } = request.payload;
+      const { Body, From, SmsMessageid } = request.payload;
 
       RabbitMQService.sendMessage({
         content: Body,
         sender: From,
         type: 'sms',
         provider: 'Twilio',
-        providermessageid: SmsMessageSid,
+        providermessageid: SmsMessageid,
         receivedat: moment().format(DATE_RFC2822)
       });
 
